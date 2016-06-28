@@ -39,13 +39,13 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public class JArduinoLog {
-    
+
     static SerialPort Port; //serial port
     static String dt = null, tmpDate = null; //date
 
     //gui
     static JFrame win; //window
-    static JLabel lblCom;  
+    static JLabel lblCom;
     static JComboBox<String> cmbPort;
     static JButton btnConnect;
     static JTextArea txtAreaLog;
@@ -54,6 +54,19 @@ public class JArduinoLog {
     static JScrollPane bar;       // scroll for JTextArea
     static DefaultCaret cr; //auto scroll JtextArea (otomatik
 
+    
+    /**
+     * Count Port
+     */
+    static void portCount() {
+        if (cmbPort.getItemCount() < 1) {
+            btnConnect.enable(false);
+        } else {
+            btnConnect.enable(true);
+            cmbPort.removeAllItems();
+        }
+    }
+
     /**
      * comPort()
      *
@@ -61,13 +74,14 @@ public class JArduinoLog {
      *
      */
     static void comPort() {
-        cmbPort.removeAllItems();
+        portCount();
         SerialPort[] ports = SerialPort.getCommPorts();
 
         for (int i = 0; i < ports.length; i++) {  // list all COM ports (tüm COM iletişim portlarini ekleyecek)
             cmbPort.addItem(ports[i].getSystemPortName());
 
         }
+
     }
 
     /**
