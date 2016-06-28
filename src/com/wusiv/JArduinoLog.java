@@ -38,7 +38,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
 
-public class ArduinoLog {
+public class JArduinoLog {
     
     static SerialPort Port; //serial port
     static String dt = null, tmpDate = null; //date
